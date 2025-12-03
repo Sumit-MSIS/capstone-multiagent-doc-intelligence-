@@ -3,10 +3,10 @@ __pycache__/
 *.py[cod]
 
 # Environment variables
-# .env
+.env
 
 # Optional: if you use other environment files
-# .env.*
+.env.*
 
 # Optional: ignore virtual environment directory
 venv/
