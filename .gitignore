@@ -1,1 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Environment variables
 .env
+
+# Optional: if you use other environment files
+.env.*
+
+# Optional: ignore virtual environment directory
+venv/
+
+.vscode/
+
+test_copy.py
+test_memory.py
+test.py
+t.ipynb
+cost_test.ipynb
+cost_test_100.ipynb
+cost_test_100 copy.ipynb
+cost_test_200.ipynb
+set10_801_1011_30que.csv
+set100_802_671_30que.csv
