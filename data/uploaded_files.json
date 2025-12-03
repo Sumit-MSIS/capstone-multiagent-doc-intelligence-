@@ -1,0 +1,41 @@
+[
+    {
+        "file_id": "0dafbfe4-92ce-4f66-a3c1-278cd14c3c0b",
+        "file_name": "Google Licensing Agreement.docx",
+        "file_type": "docx",
+        "file_size": 41780,
+        "upload_date": "2025-11-17T19:17:26.905140",
+        "user_id": 101,
+        "org_id": 101,
+        "tag_id": 123,
+        "s3_key": "uploads/20251117_191726_Google Licensing Agreement.docx",
+        "s3_bucket": "intel-repo",
+        "presigned_url": "https://intel-repo.s3.amazonaws.com/uploads/20251117_191726_Google%20Licensing%20Agreement.docx?AWSAccessKeyId=AKIA2PX4YZCUGBPNGIUF&Signature=UbK0p7jW0IaUuk%2Fiv%2BYGbRVdqT4%3D&Expires=1763410646"
+    },
+    {
+        "file_id": "23ac5899-6ea6-4a96-b51b-ab830b2d567a",
+        "file_name": "Royalty Agreement.docx",
+        "file_type": "docx",
+        "file_size": 41004,
+        "upload_date": "2025-11-18T17:51:10.290814",
+        "user_id": 101,
+        "org_id": 101,
+        "tag_id": 123,
+        "s3_key": "uploads/20251118_175110_Royalty Agreement.docx",
+        "s3_bucket": "intel-repo",
+        "presigned_url": "https://intel-repo.s3.amazonaws.com/uploads/20251118_175110_Royalty%20Agreement.docx?AWSAccessKeyId=AKIA2PX4YZCUGBPNGIUF&Signature=0EMXR5rUp%2Fw0r1logqIrewEuFGw%3D&Expires=1763491870"
+    },
+    {
+        "file_id": "7655d3b1-3a98-4774-815c-3e420081d5c2",
+        "file_name": "BIOMARIN_CRO.docx",
+        "file_type": "docx",
+        "file_size": 45707,
+        "upload_date": "2025-11-27T14:59:36.234089",
+        "user_id": 101,
+        "org_id": 101,
+        "tag_id": 123,
+        "s3_key": "uploads/20251127_145936_BIOMARIN_CRO.docx",
+        "s3_bucket": "intel-repo",
+        "presigned_url": "https://intel-repo.s3.amazonaws.com/uploads/20251127_145936_BIOMARIN_CRO.docx?AWSAccessKeyId=AKIA2PX4YZCUGBPNGIUF&Signature=1%2FwRn4H7uj9moV%2Fm6J2HIZMQjZI%3D&Expires=1764259176"
+    }
+]

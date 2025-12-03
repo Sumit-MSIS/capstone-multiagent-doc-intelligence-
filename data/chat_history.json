@@ -1,0 +1,12 @@
+[
+    {
+        "query": "hi",
+        "response": "Hello! It's great to hear from you. If you have any questions or need assistance, feel free to let me know. I'm here to help!",
+        "timestamp": "2025-12-03T09:02:18.083643",
+        "session_id": 27,
+        "chat_id": 1,
+        "files": [
+            "Royalty Agreement.docx"
+        ]
+    }
+]
