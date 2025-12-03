@@ -1,0 +1,154 @@
+from pydantic_settings import BaseSettings
+from typing import List
+from dotenv import load_dotenv
+import os
+
+# Load local .env first (baseline values, can be overridden by secrets)
+load_dotenv()
+
+# AWS secret loader
+from src.config.config_loader import load_secret_to_env, load_rds_credentials
+
+os.environ["OPENAI_MODEL_NAME"] = "gpt-4o-mini"
+os.environ["LLM_PROVIDER"] = "OPENAI"
+
+class Config(BaseSettings):
+    # Application Configurations
+    APP_NAME: str = "Contract Intel"
+    APP_VERSION: str = "1.0.1"
+    APP_DESCRIPTION: str = "An API for insights generation and contract searching."
+    ENVIRONMENT: str = "dev"
+    LAST_UPDATED: str = "2025-09-19T00:00:00Z"
+
+    FASTAPI_SERVER_LOG_GROUP_NAME: str
+
+    # OpenAI API
+    LLM_PROVIDER: str
+    OPENAI_API_KEY: str
+    OPENAI_EMBEDING_MODEL_NAME: str
+    OPENAI_MODEL_NAME: str
+
+    # Unstructured API
+    UNSTRUCTURED_API_KEY: str
+    AVIVO_TEMPLATE_ORG_ID: int
+    AVIVO_TEMPLATE_TAG_IDS: List[str]
+
+    # Database
+    DB_HOST: str
+    DB_PORT: int
+    DB_USER: str
+    DB_PASSWORD: str
+    CONTRACT_INTEL_DB: str
+    CONTEXTUAL_RAG_DB: str
+    MULTIDOCUMENT_DB: str
+    CONTRACT_GENERATION_DB: str
+    BM25_CORPUS_DB_TABLE: str
+    BM25_METADATA_DB_TABLE: str
+    BM25_SUMMARY_DB_TABLE: str
+    DYNAMODB_MESSAGE_TABLE_NAME: str
+    AGENT_INTEL_DB: str
+
+    # Pinecone
+    PINECONE_API_KEY: str
+    PINECONE_ENVIRONMENT: str
+    DOCUMENT_METADATA_INDEX: str
+    DOCUMENT_METADATA_INDEX_SPARSE: str
+    DOCUMENT_SUMMARY_AND_CHUNK_INDEX: str
+    DOCUMENT_SUMMARY_AND_CHUNK_INDEX_SPARSE: str
+    DOCUMENT_SUMMARY_INDEX: str
+    DOCUMENT_SUMMARY_INDEX_SPARSE: str
+
+    # Together
+    TOGETHER_API_KEY: str
+
+    # Node JS URLs
+    SET_LLM_STATUS_URL: str
+    SET_META_DATA_URL: str
+    SET_AI_ANSWER_URL: str
+    SET_WEBSOCKET_STREAM_URL: str
+    WEBSOCKET_URL: str
+    SET_CONCEPTUAL_SEARCH_RESULT_URL: str
+    GET_BM25_ORG_AVGDL_URL: str
+
+    # # Medical
+    MEDICAL_ORG_LIST: List[int]
+    MEDICAL_TABLE_NAME: str
+    CONTRACT_MARKDOWN_TABLE: str
+
+    # Logging
+    INSIGHTS_LOG_DIR_NAME: str
+    MEDICAL_INSIGHTS_LOG_DIR_NAME: str
+    CONTRACT_LOG_GROUP_NAME: str
+    MEDICAL_LOG_GROUP_NAME: str
+    CONTRACT_LOG_GROUP_REGION: str
+    MEDICAL_LOG_GROUP_REGION: str
+    INTELCHAT_LOG_GROUP_NAME: str
+    INTELCHAT_LOG_GROUP_REGION: str
+    INTELCHAT_LOG_DIR_NAME: str
+    CONCEPTUAL_SEARCH_LOG_GROUP_REGION: str
+    CONCEPTUAL_SEARCH_LOG_GROUP_NAME: str
+    CONCEPTUAL_SEARCH_LOG_DIR_NAME: str
+    COMPARECONTRACT_LOG_GROUP_REGION: str
+    COMPARECONTRACT_LOG_GROUP_NAME: str
+    COMPARECONTRACT_LOG_DIR_NAME: str
+    AI_CONTRACT_CREATION_LOG_DIR_NAME: str
+    AI_CONTRACT_CREATION_LOG_GROUP_NAME: str
+    AI_CONTRACT_CREATION_LOG_GROUP_REGION: str
+    DELETE_FILES_LOG_DIR_NAME: str
+    DELETE_FILES_LOG_GROUP_NAME: str
+    DELETE_FILES_LOG_GROUP_REGION: str
+    DOC_SUMMARY_TEMPLATE_LOG_DIR_NAME: str
+    DOC_SUMMARY_TEMPLATE_LOG_GROUP_NAME: str
+    DOC_SUMMARY_TEMPLATE_LOG_GROUP_REGION: str
+    AI_SUPPORT_LOG_DIR_NAME: str
+    AI_SUPPORT_LOG_GROUP_NAME: str
+    AI_SUPPORT_LOG_GROUP_REGION: str
+    RECURRING_PAYMENT_LOG_DIR_NAME: str
+    RECURRING_PAYMENT_LOG_GROUP_NAME: str
+    RECURRING_PAYMENT_LOG_GROUP_REGION: str
+    PAGE_COUNTER_LOG_GROUP_NAME: str
+    PAGE_COUNTER_LOG_GROUP_REGION: str
+    PAGE_COUNTER_LOG_DIR_NAME: str
+    ACCESS_TAG_LOG_DIR_NAME: str
+    ACCESS_TAG_LOG_GROUP_NAME: str
+    ACCESS_TAG_LOG_GROUP_REGION: str
+
+    # Temp dir
+    TEMP_DIR: str = "/tmp"
+
+    # Contract comparison
+    COMPARE_CONTRACT_CONTEXT_RETRIEVAL_QUERIES: List[str]
+
+    DOCUMENT_PARSING_ENVIRONMENT: str
+
+
+    # Mlflow
+    MLFLOW_TRACKING_URI: str
+    MLFLOW_EMBEDDING_TRACE: str
+    MLFLOW_CHAT_TRACE: str
+    MLFLOW_EXPERIMENT_NAMES: List[str]
+    MLFLOW_ENV: str
+    MLFLOW_AVIVO_ENVS: List[str]
+    MLFLOW_ARTIFACT_UPLOAD_DOWNLOAD_TIMEOUT: int
+    MLFLOW_LOG_DIR_NAME: str
+    MLFLOW_LOG_GROUP_NAME: str
+    MLFLOW_LOG_GROUP_REGION: str
+    MLFLOW_SQLALCHEMYSTORE_POOL_SIZE: int
+    MLFLOW_SQLALCHEMYSTORE_POOL_RECYCLE: int
+    MLFLOW_SQLALCHEMYSTORE_MAX_OVERFLOW: int
+
+    BM25_LOG_DIR_NAME: str
+    BM25_LOG_GROUP_NAME: str
+    BM25_LOG_GROUP_REGION: str
+
+
+    AWS_ACCESS_KEY_ID: str
+    AWS_SECRET_ACCESS_KEY: str
+    AWS_DEFAULT_REGION: str
+
+    class Config:
+        env_file = ".env"
+
+
+# ✅ Finally instantiate the config
+config = Config()

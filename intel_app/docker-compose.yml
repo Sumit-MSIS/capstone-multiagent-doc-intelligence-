@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dev_intel_app:v1.0
+    container_name: dev_intel_app
+    env_file: 
+      - .env
+    ports:
+      - "9000:9000"
+      - "9500:9500"
+    restart: unless-stopped
+    volumes:
+      - ./logs/:/logs/
+      - /tmp:/tmp
+      - ./memory_logs/:/memory_logs/
+
+   
