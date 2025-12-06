@@ -207,7 +207,7 @@ DB_NAME=mydb
 
 ---
 
-# 🚀 **Running Locally**
+# 🚀 **Running Locally (Due to dependancy it will not run correctly, i would recommend go with Docker route)**
 
 ### 1️⃣ Create virtual environment
 
@@ -235,7 +235,10 @@ streamlit run app.py
 ### Build the image
 
 ```bash
-docker build -t deepthinker-ui .
+sudo docker stop streamlit_app
+sudo docker rm streamlit_app
+sudo docker build -t streamlit_app:latest .
+
 ```
 
 ### Run the container
