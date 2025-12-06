@@ -305,7 +305,7 @@ docker run -p 5000:5000 mlflow-server
 Open:
 
 ```
-http://localhost:5000
+(http://52.70.125.119:8501/)
 ```
 
 ---
