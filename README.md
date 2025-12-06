@@ -50,7 +50,7 @@ sudo docker logs dev_intel_app --tail=100 -f
 
 ```
 
-MLflow UI will be accessible at:
+Intel backend will be accessible at:
 👉 [[http://52.70.125.119:9000](http://52.70.125.119:9000/ )
 
 
