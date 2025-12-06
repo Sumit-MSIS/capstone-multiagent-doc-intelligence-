@@ -22,6 +22,40 @@
 
 - **`SearchContracts/`**: Provides search capabilities across stored contracts.
 
+
+# 🐳 How to Run Backend via Docker
+
+### 1️⃣ Build the Docker Image
+
+```sh
+sudo docker stop dev_intel_app
+sudo docker rm dev_intel_app
+sudo docker build -t dev_intel_app:latest .
+```
+
+### 2️⃣ Run the Container
+
+```sh
+sudo docker run -d --name dev_intel_app \
+  --restart=always \
+  -p 9000:9000 \
+  -p 9500:9500 \
+  -e AWS_ACCESS_KEY_ID=VVVVVVVVV \
+  -e AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXxx \
+  -e AWS_DEFAULT_REGION=us-east-1 \
+  -e ENVIRONMENT=DEV \
+  dev_intel_app:latest 
+sudo docker logs dev_intel_app --tail=100 -f
+
+
+```
+
+MLflow UI will be accessible at:
+👉 [[http://52.70.125.119:9000](http://52.70.125.119:9000/ )
+
+
+---
+
 ## Usage
 
 1. **Navigate to a Folder**: Choose the folder relevant to your task (e.g., `GenerateContract/`).
