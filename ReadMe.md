@@ -12,9 +12,8 @@ sudo docker run -d --name streamlit_app \
 sudo docker logs streamlit_app --tail=100 -f
 
 
-📘 Project: Deep Thinker — Intelligent Document Analysis & Conversational AI
-
-Deep Thinker is a Streamlit-based AI chatbot application designed to perform document ingestion, file storage, insights generation, and conversational querying.
+📘 **Project: Deep Thinker — Intelligent Document Analysis & Conversational AI**
+**Deep Thinker** is a Streamlit-based AI chatbot application designed to perform document ingestion, file storage, insights generation, and conversational querying.
 The application interacts with:
 
 Backend APIs (FastAPI-based)
