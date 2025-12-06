@@ -244,7 +244,21 @@ sudo docker build -t streamlit_app:latest .
 ### Run the container
 
 ```bash
-docker run -p 8501:8501 --env-file .env deepthinker-ui
+sudo docker run -d --name streamlit_app \
+  --restart=always \
+  -p 8501:8501 \
+  -e AWS_ACCESS_KEY_ID=AKIA2PX4YZCULghfrxc \
+  -e AWS_SECRET_ACCESS_KEY=7M8zbSQ/3A8LTAjq4ULLrRmNGqvlabnbmnmvbcvjh \
+  -e AWS_DEFAULT_REGION=us-east-1 \
+  -v /home/ubuntu/streamlit_app/data:/app/data \
+  streamlit_app:latest
+
+```
+### logging
+
+```bash
+sudo docker logs streamlit_app --tail=100 -f
+
 ```
 
 Access:
