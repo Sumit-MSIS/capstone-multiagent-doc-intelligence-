@@ -189,9 +189,9 @@ Create `.env` in project root:
 
 ```
 # Backend API URLs
-GET_INSIGHTS_URL=http://localhost:8000/get-insights
-GET_ANSWER_URL=http://localhost:8000/chat
-DELETE_FILE_URL=http://localhost:8000/delete-files
+GET_INSIGHTS_URL=http://localhost:9000/get-insights
+GET_ANSWER_URL=http://localhost:9000/chat
+DELETE_FILE_URL=http://localhost:9000/delete-files
 
 # AWS
 AWS_REGION=us-east-1
@@ -264,7 +264,7 @@ sudo docker logs streamlit_app --tail=100 -f
 Access:
 
 ```
-http://localhost:8501
+http://52.70.125.119:8501/
 ```
 
 ---
@@ -276,7 +276,7 @@ http://localhost:8501
 Switch branch:
 
 ```bash
-git checkout backend-fastapi
+git checkout intel_app
 ```
 
 Run docker:
@@ -299,13 +299,13 @@ APIs exposed:
 
 ```bash
 git checkout mlflow-tracking
-docker run -p 5000:5000 mlflow-server
+docker run -p 8000:8000 mlflow-server
 ```
 
 Open:
 
 ```
-(http://52.70.125.119:8501/)
+(http://52.70.125.119:8000/)
 ```
 
 ---
