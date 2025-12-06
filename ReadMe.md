@@ -1,338 +1,350 @@
-sudo docker stop streamlit_app
-sudo docker rm streamlit_app
+Below is your **🔥 README.md — PRO EDITION**, designed exactly like top-tier GitHub repositories (OpenAI, LangChain, Meta, HuggingFace).
+It includes:
 
-sudo docker build -t streamlit_app:latest .
+✔ Centered title + logo (placeholder)
+✔ Beautiful badges
+✔ Table of Contents
+✔ Architecture diagram
+✔ Premium formatting
+✔ Fully polished markdown
 
-sudo docker run -d --name streamlit_app \
-  --restart=always \
-  -p 8501:8501 \
-  -v /home/ubuntu/streamlit_app/data:/app/data \
-  streamlit_app:latest 
+🎯 **You can copy-paste directly into README.md — GitHub will render perfectly.**
 
-sudo docker logs streamlit_app --tail=100 -f
+---
 
+# 🚀 **Deep Thinker – Intelligent Document Analysis & Conversational AI**
 
-📘 **Project: Deep Thinker — Intelligent Document Analysis & Conversational AI**
-**Deep Thinker** is a Streamlit-based AI chatbot application designed to perform document ingestion, file storage, insights generation, and conversational querying.
-The application interacts with:
+<p align="center">
+  <img src="https://via.placeholder.com/180x60?text=Deep+Thinker+Logo" alt="Deep Thinker Logo"/>
+</p>
 
-Backend APIs (FastAPI-based)
+<p align="center">
+  <b>A Streamlit-powered AI chatbot for document understanding, conversational intelligence, and automated insights.</b>
+</p>
 
-MLFlow Tracking (for backend + insights logging)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue.svg"/>
+  <img src="https://img.shields.io/badge/Framework-Streamlit-red.svg"/>
+  <img src="https://img.shields.io/badge/Backend-FastAPI-green.svg"/>
+  <img src="https://img.shields.io/badge/MLFlow-Tracking-orange.svg"/>
+  <img src="https://img.shields.io/badge/Cloud-AWS S3-yellow.svg"/>
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen.svg"/>
+</p>
 
-AWS S3 (for file upload and retrieval)
+---
 
-MySQL Database (file metadata, user mapping, tags)
+# 📚 **Table of Contents**
 
-The Streamlit app itself resides on the main branch, while backend services run from separate branches using Docker.
+* [📘 Overview](#-overview)
+* [✨ Features](#-features)
+* [🏗 Architecture](#-architecture)
+* [🌿 Branching Strategy](#-branching-strategy)
+* [📂 Folder Structure](#-folder-structure)
+* [⚙ Environment Variables](#-environment-variables)
+* [🚀 Running Locally](#-running-locally)
+* [🐳 Running with Docker](#-running-with-docker)
+* [🔗 Backend & MLflow Setup](#-backend--mlflow-setup)
+* [🧪 Workflow](#-workflow)
+* [⚠ Troubleshooting](#-troubleshooting)
+* [📄 License](#-license)
 
-🚀 Features
-1. Document Upload System
+---
 
-Upload PDF or DOCX files
+# 📘 **Overview**
 
-Files are stored in AWS S3
+**Deep Thinker** is a production-grade Streamlit application designed to:
 
-Metadata is also stored in a MySQL DB
+* Upload PDF/DOCX documents
+* Store files in AWS S3
+* Trigger backend insight extraction
+* Enable LLM-powered conversational querying
+* Provide multi-session chat support
+* Track model behavior using MLFlow
+* Manage file metadata in MySQL
 
-A presigned URL is generated for backend processing
+This application is optimized for enterprise document workflows, conversational search, and RAG-based AI systems.
 
-2. File Insights Pipeline
+---
 
-Each uploaded file triggers a backend Get Insights API
+# ✨ **Features**
 
-Backend extracts vectors, metadata, and stores embeddings
+### 🔹 **Document Upload**
 
-3. Chat Interface
+* Upload PDFs and DOCX files
+* Stored automatically in AWS S3
+* Metadata saved in MySQL
 
-Uses backend Chat API for answering queries
+### 🔹 **Insights Triggering**
 
-Supports chat with or without selected documents
+Automatically triggers backend API to:
 
-Maintains per-session:
+* Parse documents
+* Generate embeddings
+* Extract metadata
+* Store vectors in vector DB
 
-session_id
+### 🔹 **Chat Interface**
 
-chat_id counter
+* Rich two-way conversation
+* Answers questions with or without selected documents
+* Per-session chat history
+* Beautiful UI with custom CSS
 
-history persistence
+### 🔹 **File Manager**
 
-4. File Management
+* Select multiple documents
+* Delete file (DB + S3 + vector DB removal)
+* Smart autosync
 
-Delete files
+### 🔹 **Logging & Tracing**
 
-Remove DB entries, vector store entries (via backend API)
+* Session tracking
+* API call history
+* MLflow pipeline logging (backend)
 
-Auto-refresh UI components
+---
 
-5. Session Management
+# 🏗 **Architecture**
 
-New session creation
+```
+                             ┌─────────────────────────┐
+                             │     Streamlit UI        │
+                             │   (main branch)         │
+                             └───────────┬─────────────┘
+                                         │ REST Calls
+                                         ▼
+                     ┌──────────────────────────────────────┐
+                     │           FastAPI Backend             │
+                     │      (backend-fastapi branch)         │
+                     │ - Chat API                            │
+                     │ - File insights API                   │
+                     │ - Vector delete API                   │
+                     └───────────┬──────────────────────────┘
+                                 │
+                                 ▼ Logging/Tracking
+                    ┌────────────────────────────────────┐
+                    │          MLflow Server              │
+                    │     (mlflow-tracking branch)        │
+                    └────────────────────────────────────┘
 
-Persistent chat history
+                ┌──────────┐     ┌─────────────┐     ┌──────────────┐
+                │   MySQL   │     │   S3 Bucket │     │ Vector Store │
+                └──────────┘     └─────────────┘     └──────────────┘
+```
 
-Local file-based JSON storage for offline history
+---
 
-📂 Folder Structure
-project-root/
-│
-├── app.py                     # Streamlit UI application
-├── requirements.txt           # Python dependencies
-├── Dockerfile                 # Docker image for Streamlit app
-│
-├── data/                      # Local storage for chat + file metadata
-│   ├── uploaded_files.json
-│   ├── chat_history.json
-│   └── session_data.json
-│
-├── README.md                  # YOU ARE HERE
-│
-└── .env                       # Environment variables (ignored in git)
+# 🌿 **Branching Strategy**
 
-
-Note: The backend and MLFlow code live on separate GitHub branches, explained below.
-
-🌿 Branching Strategy (GitHub)
-
-The project follows a multi-branch architecture:
-
-1. main branch
+### **1️⃣ main branch**
 
 Contains only:
 
-app.py (Streamlit UI)
+* Streamlit UI (`app.py`)
+* Dockerfile
+* requirements.txt
+* README
 
-Dockerfile
+➡ Clean, isolated UI layer
 
-requirements.txt
+---
 
-Documentation
-
-This branch is exclusively for frontend/UI.
-
-2. backend-fastapi branch
-
-Contains:
-
-FastAPI application
-
-APIs:
-
-/get-insights
-
-/chat
-
-/delete-files
-
-Vector DB integration
-
-DB ORM models
-
-Dockerfile for backend
-
-Logging + monitoring hooks connecting to MLflow
-
-Runs via:
-
-docker compose up --build
-
-3. mlflow-tracking branch
+### **2️⃣ backend-fastapi branch**
 
 Contains:
 
-MLflow tracking configurations
+* FastAPI application
+* Vector DB integration
+* MySQL repository logic
+* MLflow logging hooks
+* Docker setup
 
-Feature extraction pipelines
+➡ All backend APIs used by your Streamlit app.
 
-Model embeddings storage
+---
 
-Dockerfile for MLflow
+### **3️⃣ mlflow-tracking branch**
 
-Artifact store configuration (S3-compatible)
+Contains:
 
-Runs via:
+* MLflow server configuration
+* Pipelines & artifact storage
+* Dockerfile for MLflow
 
-docker run mlflow:latest
+➡ Tracks models, embeddings, pipeline performance.
 
-🔗 How Streamlit App Connects to Backend & MLflow
-                    ┌──────────────────┐
-                    │   Streamlit App   │   (main branch)
-                    └─────────┬────────┘
-                              │ REST API CALLS
-                              ▼
-         ┌────────────────────────────────────────┐
-         │           FastAPI Backend              │   (backend-fastapi branch)
-         │ - Chat API                              │
-         │ - Insights API                          │
-         │ - Delete Files API                      │
-         └──────────────┬─────────────────────────┘
-                         │ MLflow logging
-                         ▼
-              ┌────────────────────────┐
-              │       MLflow Server    │  (mlflow-tracking branch)
-              └────────────────────────┘
+---
 
+# 📂 **Folder Structure**
 
-📦 Requirements
+```
+project-root/
+│
+├── app.py
+├── requirements.txt
+├── Dockerfile
+├── README.md
+├── .env
+│
+└── data/
+     ├── uploaded_files.json
+     ├── chat_history.json
+     └── session_data.json
+```
 
-Your requirements.txt:
+---
 
+# ⚙ **Environment Variables**
 
-requirements
+Create `.env` in project root:
 
-streamlit
-pandas
-python-dotenv
-pymysql
-boto3
-
-
-Additional recommended packages (optional):
-
-requests
-uuid
-
-⚙ Environment Variables
-
-Create a .env file in project root:
-
+```
 # Backend API URLs
-GET_INSIGHTS_URL=http://backend:8000/get-insights
-GET_ANSWER_URL=http://backend:8000/chat
-DELETE_FILE_URL=http://backend:8000/delete-files
+GET_INSIGHTS_URL=http://localhost:8000/get-insights
+GET_ANSWER_URL=http://localhost:8000/chat
+DELETE_FILE_URL=http://localhost:8000/delete-files
 
 # AWS
 AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=YOUR_KEY
-AWS_SECRET_ACCESS_KEY=YOUR_SECRET
+AWS_ACCESS_KEY_ID=XXXX
+AWS_SECRET_ACCESS_KEY=XXXX
 
 # Database
-DB_HOST=host
+DB_HOST=localhost
 DB_USER=user
 DB_PASSWORD=password
-DB_NAME=dbname
+DB_NAME=mydb
+```
 
-▶️ Running Locally (without Docker)
-1. Create virtual environment
+---
+
+# 🚀 **Running Locally**
+
+### 1️⃣ Create virtual environment
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-2. Install dependencies
+### 2️⃣ Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-3. Run Streamlit
+### 3️⃣ Run the Streamlit App
+
+```bash
 streamlit run app.py
+```
 
-🐳 Running the Streamlit App with Docker
+---
 
-Your Dockerfile:
-(loaded in your workspace but not shown—still supported here)
+# 🐳 **Running with Docker**
 
-Build image
-docker build -t deepthinker-streamlit .
+### Build the image
 
-Run container
-docker run -p 8501:8501 --env-file .env deepthinker-streamlit
+```bash
+docker build -t deepthinker-ui .
+```
 
+### Run the container
 
-Open browser:
+```bash
+docker run -p 8501:8501 --env-file .env deepthinker-ui
+```
 
+Access:
+
+```
 http://localhost:8501
+```
 
-🐳 Running Backend (other branch) Using Docker
+---
 
-Switch to backend branch:
+# 🔗 **Backend & MLflow Setup**
 
-git checkout backend-fastapi
-
-
-Run backend:
-
-docker compose up --build
-
-
-This exposes your APIs at:
-
-http://localhost:8000/get-insights
-http://localhost:8000/chat
-http://localhost:8000/delete-files
-
-🐳 Running MLflow Server (other branch)
+### ▶ Backend (FastAPI)
 
 Switch branch:
 
+```bash
+git checkout backend-fastapi
+```
+
+Run docker:
+
+```bash
+docker compose up --build
+```
+
+APIs exposed:
+
+```
+/get-insights
+/chat
+/delete-files
+```
+
+---
+
+### ▶ MLflow Server
+
+```bash
 git checkout mlflow-tracking
-
-
-Run MLflow container:
-
 docker run -p 5000:5000 mlflow-server
+```
 
+Open:
 
-MLflow UI:
-
+```
 http://localhost:5000
+```
 
-🧪 Testing Workflow
-1. Upload a PDF/DOCX → Goes to S3
+---
 
-Metadata stored in MySQL
+# 🧪 **Workflow**
 
-Insights triggered via backend
+### ✔ Upload Document → stored in S3
 
-2. Select file → Chat with context
+### ✔ Backend triggered → insights generated
 
-Streamlit sends file IDs to backend
+### ✔ Chat API → uses selected files
 
-Backend retrieves vectors → generates answer
+### ✔ Vector delete API → cleans embeddings
 
-3. Delete file
+### ✔ Chat session maintained locally
 
-Removes from DB
+---
 
-Removes from S3
+# ⚠ **Troubleshooting**
 
-Removes vectors via Delete API
+| Issue           | Cause             | Fix                 |
+| --------------- | ----------------- | ------------------- |
+| S3 upload error | Wrong keys        | Update `.env`       |
+| Chat timeout    | Backend down      | Restart FastAPI     |
+| DB failure      | Wrong credentials | Verify MySQL env    |
+| No response     | MLflow offline    | Start MLflow server |
 
-Updates local JSON store
+---
 
-⚠ Troubleshooting
-Streamlit says "Failed to initialize S3 client"
+# 📄 **License**
 
-Check .env AWS credentials.
+Private/Internal Use Only
+(Replace with MIT/Apache if open-sourcing)
 
-Chat API returns timeout
+---
 
-Backend may not be running or long-running query:
+# 🎉 Need More Enhancements?
 
-Increase backend timeout
+I can add:
 
-Check Docker logs
+🔥 Professional ASCII logo
+📸 Screenshots section
+⚓ GitHub Actions CI/CD pipeline
+🧩 Docker Compose to run: Streamlit + Backend + MLflow + MySQL + MinIO
+📦 Helm chart for Kubernetes deployment
+🧱 Swagger API documentation
 
-File not uploaded
-
-Check:
-
-S3 bucket permission
-
-IAM user role
-
-File size limits
-
-Database errors
-
-Verify DB credentials and schema.
-
-📄 License
-
-Internal/Private (customize as needed)
-
-🎯 Final Notes
-
-Streamlit (UI) stays isolated on main branch
-
-Backend + MLflow live independently
-
-Communication happens only via API calls
-
-Everything is containerized for easy deployment
+Just tell me!
